@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>DevOpsUsach Grupo 1</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}" />
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top py-4">
+    <div class="container">
+        <a class="navbar-brand" href="/">DevOpsUsach Grupo 1</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+               
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+	<div class="flex-container">
+		<div></div>
+		<div>
+		    <div class="title">Calcular su 10%</div>
+		    <div></div>
+			<div></div>
+			<div>
+				<div class="container text-center" style="margin-top:15%">
+					<span style="color:white">Ingrese su saldo ahorrado</span>
+				</div>
+				<div class="container text-center" style="margin-top:1%">
+					<input type="text" name="saldo" id="saldo" required></input>
+				</div>
+				<div class="container text-center" style="margin-top:10%">
+					<span  style="color:white">Ingrese su sueldo</span>
+				</div>
+				<div class="container text-center" style="margin-top:1%">
+					<input type="text" name="sueldo" id="sueldo" required></input>
+				</div>
+				<div class="container text-center" style="margin-top:10%">
+						<input type="button" id="calcular" value="Calcular" class="btn-continue" name="calcular" />
+				</div>
+			</div>
+				<div class="container text-center" style="margin-top:5%;display:none"  id="resultContainer">
+					<span style="color:white;font-size:20px">Su saldo es: $</span><span style="color:white;font-size:20px" id="saldoResultante" ></span>
+				</div>
+		</div>
+	</div>
+
+<footer class="ft-abs py-4 bg-dark text-white-50">
+    <div class="container text-center">
+    </div>
+</footer>
+
+<script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+<script>
+$(document).ready( function () {
+	$("#calcular").click(function(){
+			var saldo = $("#saldo").val();
+			var sueldo = $("#sueldo").val();
+			$.ajax({
+				 type: "POST",
+			     url: "calculateTenPercent",
+			     data:{"saldo":saldo, "sueldo":sueldo},
+			     dataType: 'json',
+			     cache:false,
+			     success: function( response ) { 
+			    	$("#resultContainer").show();
+					$("#saldoResultante").html(response);
+			     }, error: function (xhr, ajaxOptions, thrownError) {
+			        console.log(xhr.status);
+			        console.log(thrownError);
+			      }
+			});
+		});
+	});
+</script>
+</body>
+</html>
