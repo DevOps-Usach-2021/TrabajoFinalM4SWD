@@ -1,5 +1,7 @@
 package com.devops.dxc.devops.service;
 
+import com.devops.dxc.devops.model.Resultado;
+
 public interface BalanceService {
-	public String calculateBalance(String tenPercent);
+	public Resultado calculateBalance(String saldo, String tenPercent);
 }

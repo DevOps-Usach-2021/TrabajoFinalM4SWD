@@ -26,34 +26,46 @@
 
 
 	<div class="flex-container">
-		<div></div>
 		<div>
-		    <div class="title">Calcular su 10%</div>
-		    <div></div>
+		    <div><span class="title">Calcular su 10%</span></div>
 			<div></div>
 			<div>
-				<div class="container text-center" style="margin-top:15%">
+				<div class="container text-center" style="margin-top:1%">
 					<span style="color:white">Ingrese su saldo ahorrado</span>
 				</div>
 				<div class="container text-center" style="margin-top:1%">
-					<input type="text" name="saldo" id="saldo" required></input>
+					<input type="number" name="saldo" id="saldo" required></input>
 				</div>
 				<div class="container text-center" style="margin-top:10%">
 					<span  style="color:white">Ingrese su sueldo</span>
 				</div>
 				<div class="container text-center" style="margin-top:1%">
-					<input type="text" name="sueldo" id="sueldo" required></input>
+					<input type="number" name="sueldo" id="sueldo" required></input>
 				</div>
 				<div class="container text-center" style="margin-top:10%">
 						<input type="button" id="calcular" value="Calcular" class="btn-continue" name="calcular" />
 				</div>
 			</div>
-				<div class="container text-center" style="margin-top:5%;display:none"  id="resultContainer">
-					<span style="color:white;font-size:20px">Su saldo es: $</span><span style="color:white;font-size:20px" id="saldoResultante" ></span>
-				</div>
 		</div>
 	</div>
-
+	<div class="flex-container">
+		<div id="resultSuccess" style="display:none; margin-bottom:20%">
+			<div class="container text-center">
+				<span style="color:white;font-size:20px">Su 10% es: $</span><span style="color:white;font-size:20px" id=diezPorCiento ></span>
+			</div>
+			<div class="container text-center" style="margin-top:1%;">
+				<span style="color:white;font-size:20px">Su saldo restante: $</span><span style="color:white;font-size:20px" id="saldoResultante" ></span>
+			</div>
+			<div class="container text-center" style="margin-top:1%;">
+				<span style="color:white;font-size:20px">El impuesto a pagar es: $</span><span style="color:white;font-size:20px" id="impuestoResultante" ></span>
+			</div>
+		</div>
+		<div id="resultError" style="display:none">
+			<div class="container text-center">
+				<span style="color:white;font-size:20px">Existe un error al procesar: </span><span style="color:white;font-size:20px" id="error" ></span>
+			</div>
+		</div>
+	</div>
 <footer class="ft-abs py-4 bg-dark text-white-50">
     <div class="container text-center">
     </div>
@@ -73,12 +85,29 @@ $(document).ready( function () {
 			     data:{"saldo":saldo, "sueldo":sueldo},
 			     dataType: 'json',
 			     cache:false,
-			     success: function( response ) { 
-			    	$("#resultContainer").show();
-					$("#saldoResultante").html(response);
+			     success: function( response ) {
+			     	if(response.hasError == "true"){
+			     		$("#resultSuccess").hide();
+			     		$("#resultError").show();
+			     		$("#error").html(response.msgError);
+			     	}else{
+			     		// Create our number formatter.
+			     		var formatter = new Intl.NumberFormat('es-ES', {
+			     		  style: 'currency',
+			     		  currency: 'CLP',
+			     		  // These options are needed to round to whole numbers if that's what you want.
+			     		  //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+			     		  //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+			     		});
+			     		$("#resultError").hide();
+			     		$("#resultSuccess").show();
+			     		$("#diezPorCiento").html(formatter.format(response.tenPercent));
+			     		$("#saldoResultante").html(formatter.format(response.balance));
+			     		$("#impuestoResultante").html(formatter.format(response.tax));
+			     	}		    	
 			     }, error: function (xhr, ajaxOptions, thrownError) {
-			        console.log(xhr.status);
-			        console.log(thrownError);
+			    	 $("#resultError").show();
+			    	 $("#error").html(thrownError);
 			      }
 			});
 		});

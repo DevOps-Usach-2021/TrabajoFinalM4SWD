@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,11 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.devops.dxc.devops.model.Resultado;
 import com.devops.dxc.devops.service.BalanceService;
 import com.devops.dxc.devops.service.TaxService;
 import com.devops.dxc.devops.service.TenPercentService;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 @Controller
 public class DevopsApplicationController {
@@ -37,33 +37,62 @@ public class DevopsApplicationController {
 	public String index(Model model) throws IOException {
 		return "form";
 	}
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/calculateTenPercent", method = RequestMethod.POST)
 	public void calculateTenPercent(@RequestParam String saldo, @RequestParam String sueldo,
 			ModelMap model, HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 		
-		//calculo 10 por ciento y paso el valor a calculo de saldo restante
-		String tenPercent = _tenPercentService.calculateTenPercent(saldo, sueldo);
-		//TODO:validar si existe error antes de llamar al balance
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json");
+		JSONObject json = new JSONObject();
+		
+		//calculo 10 por ciento y paso el valor de resultado a calculo de saldo restante
+		Resultado tenPercent = _tenPercentService.calculateTenPercent(saldo, sueldo);
+		if(!tenPercent.getValido()){
+			try {
+				json.put("hasError", "true");
+				json.put("msgError", tenPercent.getMensaje());
+			}catch(Exception e) {
+				System.out.println(e);
+			}		
+			out.print(json);
+			return;
+		}
 		//calculo saldo
-		String balance = _balanceService.calculateBalance(tenPercent);
-		//TODO:validar si existe error antes de llamar al impuesto
+		Resultado balance = _balanceService.calculateBalance(saldo, 
+				String.valueOf(tenPercent.getValor()));
+		if(!balance.getValido()){
+			try {
+				json.put("hasError", "true");
+				json.put("msgError", tenPercent.getMensaje());
+			}catch(Exception e) {
+				System.out.println(e);
+			}		
+			out.print(json);
+			return;
+		}
 		//calculo impuesto
-		String impuesto = _taxService.calculateTax(tenPercent);
-		//TODO:validar si existe error antes de llamar a la vista
-		
-		
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		try {
-			tenPercent = gson.toJson(tenPercent);
-		}catch(Exception e) {
-			System.out.println(e);
+		Resultado tax = _taxService.calculateTax(sueldo, 
+				String.valueOf(tenPercent.getValor()));
+		if(!tax.getValido()){
+			try {
+				json.put("hasError", "true");
+				json.put("msgError", tenPercent.getMensaje());
+			}catch(Exception e) {
+				System.out.println(e);
+			}		
+			out.print(json);
+			return;
 		}
 		
-		response.setContentType("application/json");
-		PrintWriter out = response.getWriter();
-		out.print(tenPercent);
-
+		json.put("hasError", "false");
+		json.put("tenPercent", tenPercent.getValor());
+		json.put("balance", balance.getValor());
+		json.put("tax", tax.getValor());
+		
+		out.print(json);
+		
 	}
 
 }

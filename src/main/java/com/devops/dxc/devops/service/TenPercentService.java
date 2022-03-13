@@ -1,8 +1,9 @@
 package com.devops.dxc.devops.service;
 
+import com.devops.dxc.devops.model.Resultado;
 
 public interface TenPercentService {
 	
-	public String calculateTenPercent(String saldo, String sueldo);
+	public Resultado calculateTenPercent(String saldo, String sueldo);
 
 }
