@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "236a765b-ccd6-4889-97f1-333c24d804d2",
+		"_postman_id": "0b253089-83b7-43d4-9e75-c4bfc3dac4a6",
 		"name": "Laboratorio4Grupo1PostmanCollection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -17,6 +17,12 @@
 							"});",
 							"pm.test(\"Response time is less than 2000ms\", function () {",
 							"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});",
+							"pm.test(\"Resultado esperado\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.valor).to.eql(4753500);",
+							"    pm.expect(jsonData.valido).to.eql(true);",
+							"    pm.expect(jsonData.mensaje).to.eql(\"OK\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -27,12 +33,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/dxc?sueldo=2500000&ahorro=450000000",
-					"protocol": "http",
+					"raw": "https://lab4.devopslab.cl/api/dxc?sueldo=2500000&ahorro=450000000",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"lab4",
+						"devopslab",
+						"cl"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"dxc"
@@ -63,6 +70,12 @@
 							"});",
 							"pm.test(\"Response time is less than 2000ms\", function () {",
 							"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});",
+							"pm.test(\"Resultado esperado\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.valor).to.eql(445650000);",
+							"    pm.expect(jsonData.valido).to.eql(true);",
+							"    pm.expect(jsonData.mensaje).to.eql(\"OK\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -73,12 +86,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/saldo?retiro=4350000&ahorro=450000000",
-					"protocol": "http",
+					"raw": "https://lab4.devopslab.cl/api/saldo?retiro=4350000&ahorro=450000000",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"lab4",
+						"devopslab",
+						"cl"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"saldo"
@@ -109,6 +123,12 @@
 							"});",
 							"pm.test(\"Response time is less than 2000ms\", function () {",
 							"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});",
+							"pm.test(\"Resultado esperado\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.valor).to.eql(358532);",
+							"    pm.expect(jsonData.valido).to.eql(true);",
+							"    pm.expect(jsonData.mensaje).to.eql(\"OK\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -119,12 +139,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/impuesto?sueldo=2500000&retiro=4350000",
-					"protocol": "http",
+					"raw": "https://lab4.devopslab.cl/api/impuesto?sueldo=2500000&retiro=4350000",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"lab4",
+						"devopslab",
+						"cl"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"impuesto"
