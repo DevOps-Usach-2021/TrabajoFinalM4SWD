@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 
 import com.devops.dxc.devops.model.Dxc;
 import com.devops.dxc.devops.model.Resultado;
-import com.devops.dxc.devops.rest.RestData;
 import com.devops.dxc.devops.service.TenPercentService;
 
 @Service
