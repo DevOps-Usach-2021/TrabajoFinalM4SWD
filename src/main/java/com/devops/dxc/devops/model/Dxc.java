@@ -34,7 +34,7 @@ public class Dxc implements Serializable{
 	}
 
 	public int getDxc() {
-		return Util.getDxc(ahorro,sueldo);
+		return Util.getDxc(ahorro);
 	}
 
 	public void setDxc(int dxc) {

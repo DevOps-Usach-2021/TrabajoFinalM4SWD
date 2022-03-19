@@ -7,10 +7,9 @@ public class Util {
      * https://www.previsionsocial.gob.cl/sps/preguntas-frecuentes-nuevo-retiro-seguro-10/
      * 
      * @param ahorro
-     * @param sueldo
      * @return
      */
-    public static int getDxc(int ahorro, int sueldo){
+    public static int getDxc(int ahorro){
         if(((ahorro*0.1)/getUf()) > 150 ){
             return (int) (150*getUf()) ;
         } else if((ahorro*0.1)<=1000000 && ahorro >=1000000){
@@ -83,7 +82,7 @@ public class Util {
      * @return
      */
     public static int getUf(){
-        return 29000;
+        return Uf.getUf();
     }
     
 }
