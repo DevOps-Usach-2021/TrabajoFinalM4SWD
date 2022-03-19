@@ -2,7 +2,6 @@ package com.devops.dxc.devops.rest;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import com.devops.dxc.devops.model.Dxc;
 import com.devops.dxc.devops.model.Resultado;
 import com.devops.dxc.devops.service.BalanceService;
 import com.devops.dxc.devops.service.TaxService;
