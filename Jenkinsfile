@@ -44,7 +44,6 @@ pipeline {
 
         stage('Clone selenium tests') {
             steps {
-                sh 'git clone  selenium-test'
                 git branch: 'main',
                     url: 'https://github.com/DevOps-Usach-2021/TrabajoFinalM4Selenium'
 
