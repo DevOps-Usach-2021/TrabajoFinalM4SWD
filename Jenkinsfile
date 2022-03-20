@@ -20,9 +20,11 @@ pipeline {
         }
 
         stage('Build Artifact') {
-            sh "echo 'Build .Jar!'"
-            // Run Maven on a Unix agent.
-            sh 'mvn clean package -e'
+            steps {
+                sh "echo 'Build .Jar!'"
+                // Run Maven on a Unix agent.
+                sh 'mvn clean package -e'
+            }
         }
 
 
