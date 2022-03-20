@@ -33,7 +33,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://lab4.devopslab.cl/api/dxc?sueldo=2500000&ahorro=450000000",
+					"raw": "http://localhost:8081/api/dxc?sueldo=2500000&ahorro=450000000",
 					"protocol": "https",
 					"host": [
 						"lab4",
@@ -86,7 +86,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://lab4.devopslab.cl/api/saldo?retiro=4350000&ahorro=450000000",
+					"raw": "http://localhost:8081/api/saldo?retiro=4350000&ahorro=450000000",
 					"protocol": "https",
 					"host": [
 						"lab4",
@@ -139,7 +139,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://lab4.devopslab.cl/api/impuesto?sueldo=2500000&retiro=4350000",
+					"raw": "http://localhost:8081/api/impuesto?sueldo=2500000&retiro=4350000",
 					"protocol": "https",
 					"host": [
 						"lab4",
