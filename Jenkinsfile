@@ -42,6 +42,19 @@ pipeline {
             }
         }
 
+        stage('Clone selenium tests') {
+            steps {
+                sh 'git clone https://github.com/DevOps-Usach-2021/TrabajoFinalM4Selenium selenium-test'
+            }
+        }
+
+        stage('Selenium Tests') {
+            steps {
+                sh 'cd selenium-test'
+                sh 'mvn test'
+            }
+        }
+
 
         // stage('Test Newman') {
         //     steps {
