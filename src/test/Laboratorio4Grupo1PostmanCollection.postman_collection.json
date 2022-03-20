@@ -20,7 +20,7 @@
 							"});",
 							"pm.test(\"Resultado esperado\", function () {",
 							"    var jsonData = pm.response.json();",
-							"    pm.expect(jsonData.valor).to.eql(4753500);",
+							"    pm.expect(jsonData.valor).to.eql(4754100);",
 							"    pm.expect(jsonData.valido).to.eql(true);",
 							"    pm.expect(jsonData.mensaje).to.eql(\"OK\");",
 							"});"
