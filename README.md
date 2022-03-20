@@ -1,6 +1,6 @@
 # Laboratorio Módulo 4 v2.2
 
-El presente proyecto corresponde a la capa aplicativa requeridad para el laboratorio \#4 del Diplomado DevOps USACH 2021 - Grupo 1.
+El presente proyecto corresponde a la capa aplicativa requeridad para el laboratorio correspondiente al módulo 4, del Diplomado DevOps USACH 2021 - Grupo 1.
 
 # Ejecución
 
