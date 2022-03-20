@@ -59,11 +59,11 @@ pipeline {
         //     sh "ls -lat"
         // }
 
-        // stage('Selenium Tests') {
-        //     steps {
-        //         sh 'cd selenium-test && mvn test'
-        //     }
-        // }
+        stage('Selenium Tests') {
+            steps {
+                sh 'mvn test'
+            }
+        }
 
 
         // stage('Test Newman') {
