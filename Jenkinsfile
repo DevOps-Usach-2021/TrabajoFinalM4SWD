@@ -38,10 +38,7 @@ pipeline {
 
         stage('Test Newman') {
             steps {
-                sh 'newman run '
-                // Run Maven on a Unix agent.
-                sh 'sleep 10'
-                sh 'curl -X GET "http://localhost:8081" Laboratorio4Grupo1PostmanCollection.postman_collection'
+                sh 'newman run Laboratorio4Grupo1PostmanCollection.postman_collection.json'
             }
         }
 
