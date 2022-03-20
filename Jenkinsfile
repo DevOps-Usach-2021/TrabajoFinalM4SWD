@@ -29,7 +29,7 @@ pipeline {
 
         stage('Run') {
             steps {
-                sh 'nohup java -jar target/devops.0.0.1-SNAPSHOT.jar & >/dev/null'
+                sh 'nohup java -jar target/devops-0.0.1-SNAPSHOT.jar & >/dev/null'
                 // Run Maven on a Unix agent.
                 sh 'sleep 10'
                 sh 'curl -X GET "http://localhost:8081"'
