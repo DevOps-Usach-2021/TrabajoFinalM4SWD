@@ -38,7 +38,7 @@ pipeline {
 
         stage('Test Newman') {
             steps {
-                sh 'newman run Laboratorio4Grupo1PostmanCollection.postman_collection.json'
+                sh 'newman run src/test/Laboratorio4Grupo1PostmanCollection.postman_collection.json'
             }
         }
 
