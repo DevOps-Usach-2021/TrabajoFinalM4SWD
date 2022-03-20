@@ -50,8 +50,7 @@ pipeline {
 
         stage('Selenium Tests') {
             steps {
-                sh 'cd selenium-test'
-                sh 'mvn test'
+                sh 'cd selenium-test && mvn test'
             }
         }
 
