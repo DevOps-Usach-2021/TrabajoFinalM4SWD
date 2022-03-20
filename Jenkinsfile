@@ -19,6 +19,13 @@ pipeline {
             }
         }
 
+        stage('Build Artifact') {
+            sh "echo 'Build .Jar!'"
+            // Run Maven on a Unix agent.
+            sh 'mvn clean package -e'
+        }
+
+
         // stage('Test Newman') {
         //     steps {
         //         sh "newman run mindicador.cl.postman_collection.json -n 3"
