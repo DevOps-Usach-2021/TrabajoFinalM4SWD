@@ -34,7 +34,7 @@
 				"header": [],
 				"url": {
 					"raw": "http://localhost:8081/api/dxc?sueldo=2500000&ahorro=450000000",
-					"protocol": "https",
+					"protocol": "http",
 					"host": [
 						"localhost:8081"
 					],
@@ -85,7 +85,7 @@
 				"header": [],
 				"url": {
 					"raw": "http://localhost:8081/api/saldo?retiro=4350000&ahorro=450000000",
-					"protocol": "https",
+					"protocol": "http",
 					"host": [
 						"localhost:8081"
 					],
@@ -136,7 +136,7 @@
 				"header": [],
 				"url": {
 					"raw": "http://localhost:8081/api/impuesto?sueldo=2500000&retiro=4350000",
-					"protocol": "https",
+					"protocol": "http",
 					"host": [
 						"localhost:8081"
 					],
