@@ -96,9 +96,22 @@ class DxcTests {
 			int sueldo = 1000000;
 	
 			Dxc dxc = new Dxc(ahorro, sueldo);
-			
-			assertEquals(30000, Uf.getUf());			
 			assertEquals(4500000, dxc.getDxc());
+
+			ahorro = 1500000;
+	
+			dxc = new Dxc(ahorro, sueldo);
+			assertEquals(1000000, dxc.getDxc());
+
+			ahorro = 500000;
+	
+			dxc = new Dxc(ahorro, sueldo);
+			assertEquals(500000, dxc.getDxc());
+
+			ahorro = 20000000;
+	
+			dxc = new Dxc(ahorro, sueldo);
+			assertEquals(2000000, dxc.getDxc());
 		}
 
 		// assertEquals(4500000, dxc.getDxc());
