@@ -44,15 +44,27 @@ pipeline {
 
         stage('Clone selenium tests') {
             steps {
-                sh 'git clone https://github.com/DevOps-Usach-2021/TrabajoFinalM4Selenium selenium-test'
-            }
-        }
+                sh 'git clone  selenium-test'
+                git branch: 'main',
+                    url: 'https://github.com/DevOps-Usach-2021/TrabajoFinalM4Selenium'
 
-        stage('Selenium Tests') {
-            steps {
-                sh 'cd selenium-test && mvn test'
+                sh "ls -lat"
             }
         }
+        // stage('Checkout external proj') {
+        // steps {
+        //     git branch: 'my_specific_branch',
+        //         credentialsId: 'my_cred_id',
+        //         url: 'ssh://git@test.com/proj/test_proj.git'
+
+        //     sh "ls -lat"
+        // }
+
+        // stage('Selenium Tests') {
+        //     steps {
+        //         sh 'cd selenium-test && mvn test'
+        //     }
+        // }
 
 
         // stage('Test Newman') {
