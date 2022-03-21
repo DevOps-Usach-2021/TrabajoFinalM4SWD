@@ -50,26 +50,11 @@ pipeline {
                 sh "ls -lat"
             }
         }
-        // stage('Checkout external proj') {
-        // steps {
-        //     git branch: 'my_specific_branch',
-        //         credentialsId: 'my_cred_id',
-        //         url: 'ssh://git@test.com/proj/test_proj.git'
-
-        //     sh "ls -lat"
-        // }
 
         stage('Selenium Tests') {
             steps {
                 sh 'mvn test'
             }
         }
-
-
-        // stage('Test Newman') {
-        //     steps {
-        //         sh "newman run mindicador.cl.postman_collection.json -n 3"
-        //     }
-        // }
     }
 }
